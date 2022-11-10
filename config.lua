@@ -11,7 +11,8 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = false
-lvim.colorscheme = "onedarker"
+-- lvim.colorscheme = "onedarker"
+lvim.colorscheme = "catppuccin-macchiato"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -27,6 +28,10 @@ lvim.keys.normal_mode["<F2>"] = ":DiffviewClose<cr>"
 
 vim.opt.mouse = a
 lvim.transparent_window = true
+
+-- AN
+lvim.builtin.which_key.mappings["P"] = { "<cmd> Telescope projects<CR>", "Projects" }
+lvim.lsp.diagnostics.virtual_text = false
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
@@ -83,7 +88,6 @@ lvim.builtin.which_key.mappings["s"] = {
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 -- lvim.builtin.nvimtree.show_icons.git = 0
@@ -170,8 +174,48 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Plugins
 lvim.plugins = {
-  { "sindrets/diffview.nvim" },
+  -- { "sindrets/diffview.nvim", event = "BufRead", },
+  {
+    "sindrets/diffview.nvim",
+    event = "BufRead",
+  },
   { "Pocco81/Catppuccino.nvim" },
+  { 'neoclide/coc.nvim', branch = 'release' },
+  { 'bluz71/vim-nightfly-guicolors' },
+  { 'rodjek/vim-puppet' },
+  { 'mfussenegger/nvim-jdtls' },
+  {
+    "ruifm/gitlinker.nvim",
+    event = "BufRead",
+    config = function()
+      require("gitlinker").setup {
+        opts = {
+          -- remote = 'github', -- force the use of a specific remote
+          -- adds current line nr in the url for normal mode
+          add_current_line_on_normal_mode = true,
+          -- callback for what to do with the url
+          -- action_callback = require("gitlinker.actions").open_in_browser,
+          action_callback = require "gitlinker.actions".copy_to_clipboard,
+          -- print the url after performing the action
+          print_url = true,
+          -- mapping to call url generation
+          mappings = "<leader>gy",
+        },
+        callbacks = {
+          ["git.gtech.com"] = require "gitlinker.hosts".get_bitbucket_type_url,
+        },
+      }
+    end,
+    requires = "nvim-lua/plenary.nvim",
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    ft = "markdown",
+    config = function()
+      vim.g.mkdp_auto_start = 1
+    end,
+  },
 }
 -- lvim.plugins = {
 --     {"folke/tokyonight.nvim"},
@@ -181,16 +225,23 @@ lvim.plugins = {
 --     },
 -- }
 
+
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  { command = "google_java_format", filetypes = { "java" } },
+}
+
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
--- vim.api.nvim_create_autocmd("BufEnter", {
---   pattern = { "*.json", "*.jsonc" },
---   -- enable wrap mode for json files only
---   command = "setlocal wrap",
--- })
--- vim.api.nvim_create_autocmd("FileType", {
---   pattern = "zsh",
---   callback = function()
---     -- let treesitter use bash highlight for zsh files as well
---     require("nvim-treesitter.highlight").attach(0, "bash")
---   end,
--- })
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = { "*.json", "*.jsonc" },
+  -- enable wrap mode for json files only
+  command = "setlocal wrap",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "zsh",
+  callback = function()
+    -- let treesitter use bash highlight for zsh files as well
+    require("nvim-treesitter.highlight").attach(0, "bash")
+  end,
+})

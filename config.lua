@@ -32,6 +32,7 @@ lvim.transparent_window = true
 -- AN
 lvim.builtin.which_key.mappings["P"] = { "<cmd> Telescope projects<CR>", "Projects" }
 lvim.lsp.diagnostics.virtual_text = false
+vim.opt.relativenumber = true
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
@@ -123,9 +124,9 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
 -- ---`:LvimInfo` lists which server(s) are skiipped for the current filetype
--- vim.tbl_map(function(server)
---   return server ~= "emmet_ls"
--- end, lvim.lsp.automatic_configuration.skipped_servers)
+vim.tbl_map(function(server)
+	return server ~= "ansiblels"
+end, lvim.lsp.automatic_configuration.skipped_servers)
 
 -- -- you can set a custom on_attach function that will be used for all the language servers
 -- -- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
@@ -157,7 +158,7 @@ formatters.setup({
 		-- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
 		extra_args = { "--print-with", "100" },
 		---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-		filetypes = { "typescript", "typescriptreact" },
+		filetypes = { "typescript", "typescriptreact", "yaml" },
 	},
 })
 
@@ -179,6 +180,25 @@ formatters.setup({
 --   },
 -- }
 
+local linters = require("lvim.lsp.null-ls.linters")
+linters.setup({
+	-- { command = "luacheck", filetypes = { "lua" } },
+	{ command = "ansiblelint", filetypes = { "yaml.ansible" } },
+	{ command = "yamllint", filetypes = { "yaml" } },
+	{
+		-- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+		command = "shellcheck",
+		---@usage arguments to pass to the formatter
+		-- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+		extra_args = { "--severity", "warning" },
+	},
+	{
+		command = "codespell",
+		---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+		filetypes = { "javascript", "python" },
+	},
+})
+
 -- Additional Plugins
 lvim.plugins = {
 	-- { "sindrets/diffview.nvim", event = "BufRead", },
@@ -190,6 +210,7 @@ lvim.plugins = {
 	{ "neoclide/coc.nvim", branch = "release" },
 	{ "bluz71/vim-nightfly-guicolors" },
 	{ "rodjek/vim-puppet" },
+	{ "pearofducks/ansible-vim" },
 	{ "mfussenegger/nvim-jdtls" },
 	{
 		"ruifm/gitlinker.nvim",
@@ -237,6 +258,17 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = { "*.json", "*.jsonc" },
 	-- enable wrap mode for json files only
 	command = "setlocal wrap",
+})
+
+-- vim.api.nvim_create_autocmd("BufNewFile,BufRead", {
+-- vim.api.nvim_create_autocmd("BufRead", {
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = { "*.yml" },
+	-- command = "setfiletype yaml.ansible",
+	callback = function()
+		-- let treesitter use bash highlight for zsh files as well
+		require("lvim.lsp.manager").setup("ansiblels", opts)
+	end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {

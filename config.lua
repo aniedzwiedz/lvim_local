@@ -35,15 +35,15 @@ lvim.transparent_window = true
 
 -- AN
 lvim.builtin.which_key.mappings["P"] = { "<cmd> Telescope projects<CR>", "Projects" }
-lvim.builtin.which_key.mappings["t"] = {
-  name = "+Trouble",
-  r = { "<cmd>Trouble lsp_references<cr>", "References" },
-  f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
-  d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
-  q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
-  l = { "<cmd>Trouble loclist<cr>", "LocationList" },
-  w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
-}
+-- lvim.builtin.which_key.mappings["t"] = {
+--   name = "+Trouble",
+--   r = { "<cmd>Trouble lsp_references<cr>", "References" },
+--   f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
+--   d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
+--   q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
+--   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
+--   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
+-- }
 
 lvim.lsp.diagnostics.virtual_text = false
 vim.opt.relativenumber = true
@@ -125,9 +125,8 @@ lvim.builtin.treesitter.ensure_installed = {
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
-require("plugin.trouble")
-
--- generic LSP settings
+-- require("plugin.trouble")
+-- require("lua.colorizer")
 
 -- -- make sure server will always be installed even if the server is in skipped_servers list
 lvim.lsp.installer.setup.ensure_installed = {
@@ -263,12 +262,12 @@ linters.setup({
 
 -- Additional Plugins
 lvim.plugins = {
-	-- { "sindrets/diffview.nvim", event = "BufRead", },
 	{
 		"sindrets/diffview.nvim",
 		event = "BufRead",
 	},
 	{ "Pocco81/Catppuccino.nvim" },
+	{ "norcalli/nvim-colorizer.lua" },
 	{ "neoclide/coc.nvim", branch = "release" },
 	{ "bluz71/vim-nightfly-guicolors" },
 	{ "rodjek/vim-puppet" },

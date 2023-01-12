@@ -12,7 +12,10 @@ an executable
 lvim.log.level = "warn"
 lvim.format_on_save = false
 -- lvim.colorscheme = "onedarker"
-lvim.colorscheme = "catppuccin-macchiato"
+-- lvim.colorscheme = "catppuccin-macchiato"
+lvim.colorscheme = "nightfly"
+lvim.builtin.lualine.options.theme = "nightfly"
+
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -36,13 +39,13 @@ lvim.transparent_window = true
 -- AN
 lvim.builtin.which_key.mappings["P"] = { "<cmd> Telescope projects<CR>", "Projects" }
 lvim.builtin.which_key.mappings["t"] = {
-  name = "+Trouble",
-  r = { "<cmd>Trouble lsp_references<cr>", "References" },
-  f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
-  d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
-  q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
-  l = { "<cmd>Trouble loclist<cr>", "LocationList" },
-  w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
+	name = "+Trouble",
+	r = { "<cmd>Trouble lsp_references<cr>", "References" },
+	f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
+	d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
+	q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
+	l = { "<cmd>Trouble loclist<cr>", "LocationList" },
+	w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
 }
 
 lvim.lsp.diagnostics.virtual_text = false
@@ -125,7 +128,7 @@ lvim.builtin.treesitter.ensure_installed = {
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
-require("plugin.trouble")
+-- require("plugin.trouble")
 
 -- generic LSP settings
 
@@ -134,7 +137,7 @@ lvim.lsp.installer.setup.ensure_installed = {
 	"sumneko_lua",
 	"jsonls",
 	"ansiblels",
-	"python",
+	"pyright",
 }
 -- -- change UI setting of `LspInstallInfo`
 -- -- see <https://github.com/williamboman/nvim-lsp-installer#default-configuration>
@@ -269,15 +272,17 @@ lvim.plugins = {
 		event = "BufRead",
 	},
 	{ "Pocco81/Catppuccino.nvim" },
+	{ "bluz71/vim-nightfly-colors" },
+	{ "NvChad/nvim-colorizer.lua" },
 	{ "neoclide/coc.nvim", branch = "release" },
 	{ "bluz71/vim-nightfly-guicolors" },
 	{ "rodjek/vim-puppet" },
 	{ "pearofducks/ansible-vim" },
 	{ "mfussenegger/nvim-jdtls" },
-    {
-    "folke/trouble.nvim",
-    cmd = "TroubleToggle",
-  },
+	{
+		"folke/trouble.nvim",
+		cmd = "TroubleToggle",
+	},
 	{
 		"ruifm/gitlinker.nvim",
 		event = "BufRead",

@@ -13,8 +13,10 @@ lvim.log.level = "warn"
 lvim.format_on_save = false
 -- lvim.colorscheme = "onedarker"
 -- lvim.colorscheme = "catppuccin-macchiato"
-lvim.colorscheme = "nightfly"
-lvim.builtin.lualine.options.theme = "nightfly"
+-- lvim.colorscheme = "nightfly"
+-- lvim.builtin.lualine.options.theme = "nightfly"
+lvim.colorscheme = "onedark"
+lvim.builtin.lualine.options.theme = "onedark"
 
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
@@ -129,6 +131,8 @@ lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
 -- require("plugin.trouble")
+require("user.onedark")
+require("user.rose-pine")
 
 -- generic LSP settings
 
@@ -271,7 +275,21 @@ lvim.plugins = {
 		"sindrets/diffview.nvim",
 		event = "BufRead",
 	},
+  -- colorschemes 
 	{ "Pocco81/Catppuccino.nvim" },
+	{ "navarasu/onedark.nvim" },
+	{ "rose-pine/neovim" },
+  -- extra-plugins https://www.lunarvim.org/docs/plugins/extra-plugins
+  
+  {
+  "phaazon/hop.nvim",
+  event = "BufRead",
+  config = function()
+    require("hop").setup()
+    vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
+    vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
+  end,
+},
 	{ "bluz71/vim-nightfly-colors" },
 	{ "NvChad/nvim-colorizer.lua" },
 	{ "neoclide/coc.nvim", branch = "release" },

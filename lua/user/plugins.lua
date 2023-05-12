@@ -2,6 +2,8 @@
 lvim.plugins = {
 	{ "rodjek/vim-puppet" },
 
+	{ "windwp/nvim-spectre" },
+	{ "ruifm/gitlinker.nvim" },
 	-- { "TimUntersberger/neogit" },
 	{
 		"phaazon/hop.nvim",

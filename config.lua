@@ -6,6 +6,8 @@
 reload("user.plugins")
 reload("user.colorizer")
 reload("user.whichkey")
+reload("user.lualine")
+reload("user.git")
 -- reload("user.neogit")
 
 -- vim options
@@ -38,7 +40,7 @@ lvim.builtin.which_key.mappings["f"] = {}
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 lvim.builtin.which_key.mappings["sT"] = { "<cmd>Telescope grep_string<CR>", "Find text under cursor" }
 
-lvim.builtin.lualine.sections.lualine_c = { "diff" }
+-- lvim.builtin.lualine.sections.lualine_c = { "diff" }
 
 -- lvim.builtin.which_key.mappings["gL"] = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "View full Git blame" }
 -- l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
@@ -53,7 +55,7 @@ lvim.keys.normal_mode["<leader>gL"] = {
 
 -- -- Change theme settings
 lvim.colorscheme = "kanagawa"
-lvim.builtin.lualine.options.theme = "gruvbox"
+-- lvim.builtin.lualine.options.theme = "gruvbox"
 
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "startify"

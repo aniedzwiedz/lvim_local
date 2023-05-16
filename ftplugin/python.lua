@@ -4,14 +4,14 @@ if not status_ok then
 end
 
 -- Advanced pyright configuration
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright", "jsonls" })
+-- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright", "jsonls" })
 
 local pyright_opts = {
   single_file_support = true,
   settings = {
     pyright = {
       disableLanguageServices = false,
-      disableOrganizeImports = false
+      disableOrganizeImports = false,
     },
     python = {
       analysis = {
@@ -19,9 +19,9 @@ local pyright_opts = {
         autoSearchPaths = true,
         diagnosticMode = "workspace", -- openFilesOnly, workspace
         typeCheckingMode = "basic", -- off, basic, strict
-        useLibraryCodeForTypes = true
-      }
-    }
+        useLibraryCodeForTypes = true,
+      },
+    },
   },
 }
 
@@ -29,12 +29,15 @@ require("lvim.lsp.manager").setup("pyright", pyright_opts)
 
 -- setup formatting
 local formatters = require "lvim.lsp.null-ls.formatters"
-formatters.setup { { name = "black" }, }
+formatters.setup { { name = "black" } }
 -- lvim.format_on_save.pattern = { "*.py" }
 
 local linters = require "lvim.lsp.null-ls.linters"
--- linters.setup { { command = "flake8", filetypes = { "python" } } }
+linters.setup {
+  { command = "flake8", extra_args = { "--ignore=E501" }, filetypes = { "python" } },
+}
 
+-- nls.builtins.formatting.shfmt.with { extra_args = { "-i", "2", "-ci" } },
 local opts = {
   mode = "n", -- NORMAL mode
   prefix = "<leader>",
@@ -52,9 +55,9 @@ pcall(function()
 end)
 
 -- setup testing
-require("neotest").setup({
+require("neotest").setup {
   adapters = {
-    require("neotest-python")({
+    require "neotest-python" {
       -- Extra arguments for nvim-dap configuration
       -- See https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for values
       dap = {
@@ -63,9 +66,9 @@ require("neotest").setup({
       },
       args = { "--log-level", "DEBUG", "--quiet" },
       runner = "pytest",
-    })
-  }
-})
+    },
+  },
+}
 
 local mappings = {
   C = {
@@ -73,5 +76,18 @@ local mappings = {
     c = { "<cmd>lua require('swenv.api').pick_venv()<cr>", "Choose Env" },
   },
 }
+
+lvim.builtin.which_key.mappings["dm"] = { "<cmd>lua require('neotest').run.run()<cr>", "Test Method" }
+lvim.builtin.which_key.mappings["dM"] =
+  { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", "Test Method DAP" }
+lvim.builtin.which_key.mappings["df"] = {
+  "<cmd>lua require('neotest').run.run({vim.fn.expand('%')})<cr>",
+  "Test Class",
+}
+lvim.builtin.which_key.mappings["dF"] = {
+  "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>",
+  "Test Class DAP",
+}
+lvim.builtin.which_key.mappings["dS"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Test Summary" }
 
 which_key.register(mappings, opts)

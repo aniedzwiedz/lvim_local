@@ -1,22 +1,20 @@
-vim.diagnostic.config({ virtual_text = false })
+vim.diagnostic.config { virtual_text = false }
 
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "jdtls" })
 
-local formatters = require("lvim.lsp.null-ls.formatters")
-formatters.setup({
-	{ command = "stylua", filetypes = { "lua" } },
-	{ command = "shfmt", filetypes = { "sh", "zsh" } },
-	{ command = "puppet_lint", filetypes = { "puppet" } },
-	{
-		name = "prettier",
-		---@usage arguments to pass to the formatter
-		-- these cannot contain whitespace
-		-- options such as `--line-width 80` become either `{"--line-width", "80"}` or `{"--line-width=80"}`
-		args = { "--print-width", "100" },
-		---@usage only start in these filetypes, by default it will attach to all filetypes it supports
-		filetypes = { "typescript", "typescriptreact" },
-	},
-})
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  { command = "puppet_lint", filetypes = { "puppet" } },
+  -- {
+  -- 	name = "prettier",
+  -- 	---@usage arguments to pass to the formatter
+  -- 	-- these cannot contain whitespace
+  -- 	-- options such as `--line-width 80` become either `{"--line-width", "80"}` or `{"--line-width=80"}`
+  -- 	args = { "--print-width", "100" },
+  -- 	---@usage only start in these filetypes, by default it will attach to all filetypes it supports
+  -- 	filetypes = { "typescript", "typescriptreact" },
+  -- },
+}
 
 -- -- generic LSP settings <https://www.lunarvim.org/docs/languages#lsp-support>
 
@@ -46,14 +44,13 @@ formatters.setup({
 -- end
 
 -- -- linters and formatters <https://www.lunarvim.org/docs/languages#lintingformatting>
-local linters = require("lvim.lsp.null-ls.linters")
-linters.setup({
-	{ command = "flake8", filetypes = { "python" } },
-	{
-		command = "shellcheck",
-		args = { "--severity", "warning" },
-	},
-})
+-- local linters = require("lvim.lsp.null-ls.linters")
+-- linters.setup({
+-- 	{
+-- 		command = "shellcheck",
+-- 		args = { "--severity", "warning" },
+-- 	},
+-- })
 -- lvim.lsp.on_attach_callback = function(client, bufnr)
 -- end
 

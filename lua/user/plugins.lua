@@ -2,6 +2,14 @@
 lvim.plugins = {
 
   { "rodjek/vim-puppet" },
+  { "ChristianChiarulli/onedark.nvim" },
+  { "NvChad/nvim-colorizer.lua" },
+  { "simrat39/rust-tools.nvim" },
+  { "MunifTanjim/nui.nvim" },
+  { "is0n/jaq-nvim" },
+  { "j-hui/fidget.nvim" },
+  { "kylechui/nvim-surround" },
+  { "mfussenegger/nvim-jdtls" },
 
   { "windwp/nvim-spectre" },
   { "ruifm/gitlinker.nvim" },
@@ -24,7 +32,7 @@ lvim.plugins = {
     },
     keys = {
       { "<leader>gD", "<cmd>DiffviewOpen origin<cr>", desc = "Open DiffviewOpen" },
-      ["<F2>"] = { ":DiffviewClose<cr>", desc = "Close Diff View" }, -- closing Diffview
+      ["<F4>"] = { ":DiffviewClose<cr>", desc = "Close Diff View" }, -- closing Diffview
     },
   },
   {

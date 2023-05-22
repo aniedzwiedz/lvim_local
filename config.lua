@@ -2,12 +2,17 @@
  THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
  `lvim` is the global options object
 ]]
+-- reload "user.lualine"
 reload "user.plugins"
 reload "user.colorizer"
 reload "user.whichkey"
-reload "user.lualine"
 reload "user.git"
 reload "user.lsp"
+reload "user.autocommands"
+reload "user.fidget"
+reload "user.cmp"
+reload "user.jaq"
+reload "user.surround"
 
 require("user.null_ls").config()
 -- reload("user.neogit")
@@ -55,7 +60,8 @@ lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<F4>"] = ":DiffviewClose<CR>"
-lvim.builtin.which_key.mappings["f"] = {}
+-- lvim.builtin.which_key.mappings["f"] = {}
+lvim.builtin.which_key.mappings["s"] = {}
 
 -- Search and replace word under cursor using <F2>
 vim.cmd [[ nnoremap <F2> :%s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i ]]
@@ -66,7 +72,7 @@ vim.cmd [[ nnoremap <F2> :%s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i ]]
 -- -- Use which-key to add extra bindings with the leader-key prefix
 -- lvim.builtin.which_key.mappings["W"] = { "<cmd>noautocmd w<cr>", "Save without formatting" }
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
-lvim.builtin.which_key.mappings["sT"] = { "<cmd>Telescope grep_string<CR>", "Find text under cursor" }
+lvim.builtin.which_key.mappings["fT"] = { "<cmd>Telescope grep_string<CR>", "Find text under cursor" }
 
 -- lvim.builtin.lualine.sections.lualine_c = { "diff" }
 
@@ -82,8 +88,10 @@ lvim.keys.normal_mode["<leader>gL"] = {
 }
 
 -- -- Change theme settings
-lvim.colorscheme = "kanagawa"
--- lvim.builtin.lualine.options.theme = "gruvbox"
+lvim.colorscheme = "kanagawa-dragon"
+-- lvim.colorscheme = "onedark"
+lvim.builtin.lualine.options.theme = "onedark_gray"
+-- lvim.builtin.lualine.options.theme = "onedark"
 
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "startify"

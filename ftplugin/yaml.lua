@@ -1,8 +1,22 @@
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "yamlls" })
+local yaml_opts = {
+  settings = {
+    yaml = {
+      hover = true,
+      completion = true,
+      validate = true,
+      schemaStore = {
+        enable = true,
+        url = "https://www.schemastore.org/api/json/catalog.json",
+      },
+      schemas = require("schemastore").yaml.schemas(),
+    },
+  },
+}
 
 -- print(vim.api.nvim_buf_get_name(0))
-local formatters = require "lvim.lsp.null-ls.formatters"
 local linters = require "lvim.lsp.null-ls.linters"
+local formatters = require "lvim.lsp.null-ls.formatters"
 local code_actions = require "lvim.lsp.null-ls.code_actions"
 
 local path = vim.api.nvim_buf_get_name(0)
@@ -40,6 +54,7 @@ else
   })
 end
 
+return yaml_opts
 -- vim.schedule(function()
 --   if vim.opt.filetype:get() == "yaml" then
 --     require("lvim.lsp.manager").setup("yamlls", {})

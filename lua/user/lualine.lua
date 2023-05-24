@@ -88,10 +88,12 @@ lvim.builtin.lualine.sections.lualine_b = {
 lvim.builtin.lualine.sections.lualine_c = {
   diagnostics,
   components.python_env,
+  components.diff,
 }
 
 lvim.builtin.lualine.sections.lualine_c = {
   diagnostics,
+  components.diff,
   -- { lualine_c = { "os.date('%a')", "data", "require'lsp-status'.status()" } },
 }
 

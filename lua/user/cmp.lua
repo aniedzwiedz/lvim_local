@@ -1,10 +1,10 @@
 lvim.builtin.cmp.window = {
   completion = {
     border = "rounded",
-    winhighlight = "Normal:Pmenu,CursorLine:PmenuSel,FloatBorder:FloatBorder,Search:None",
+    -- winhighlight = "Normal:Pmenu,CursorLine:PmenuSel,FloatBorder:FloatBorder,Search:None",
     col_offset = -3,
-    side_padding = 1,
-    scrollbar = false,
+    side_padding = 0,
+    scrollbar = true,
     -- scrollbar = {
     --   position = 'inside',
     -- },
@@ -12,12 +12,12 @@ lvim.builtin.cmp.window = {
   },
   documentation = {
     border = "rounded",
-    winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,Search:None",
+    -- winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,Search:None",
   },
 }
 vim.opt.pumblend = 10
 
-lvim.builtin.cmp.formatting.source_names = {}
+-- lvim.builtin.cmp.formatting.source_names = {}
 
 lvim.builtin.cmp.sources[2].entry_filter = function(entry, ctx)
   local kind = require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]

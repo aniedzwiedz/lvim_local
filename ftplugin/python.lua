@@ -29,7 +29,7 @@ require("lvim.lsp.manager").setup("pyright", pyright_opts)
 
 -- setup formatting
 local formatters = require "lvim.lsp.null-ls.formatters"
-formatters.setup { { name = "black" } }
+formatters.setup { { name = "black", extra_args = { "--fast" } } }
 -- lvim.format_on_save.pattern = { "*.py" }
 
 local linters = require "lvim.lsp.null-ls.linters"

@@ -48,8 +48,8 @@ M.config = function()
       prefer_local = "node_modules/.bin",
     },
     -- nls.builtins.formatting.stylua,
-    nls.builtins.formatting.goimports,
-    nls.builtins.formatting.gofumpt,
+    -- nls.builtins.formatting.goimports,
+    -- nls.builtins.formatting.gofumpt,
     nls.builtins.formatting.cmake_format,
     nls.builtins.formatting.scalafmt,
     nls.builtins.formatting.sqlformat,
@@ -57,13 +57,13 @@ M.config = function()
     -- Support for nix files
     nls.builtins.formatting.alejandra,
     nls.builtins.formatting.shfmt.with { extra_args = { "-i", "2", "-ci" } },
-    nls.builtins.formatting.black.with { extra_args = { "--fast" }, filetypes = { "python" } },
+    -- nls.builtins.formatting.black.with { extra_args = { "--fast" }, filetypes = { "python" } },
     nls.builtins.formatting.isort.with { extra_args = { "--profile", "black" }, filetypes = { "python" } },
-    nls.builtins.diagnostics.ansiblelint.with {
-      -- condition = function(utils)
-      --   return utils.root_has_file "roles" and utils.root_has_file "inventories"
-      -- end,
-    },
+    -- nls.builtins.diagnostics.ansiblelint.with {
+    -- condition = function(utils)
+    --   return utils.root_has_file "roles" and utils.root_has_file "inventories"
+    -- end,
+    -- },
     nls.builtins.diagnostics.solhint.with {
       condition = function(utils)
         return utils.root_has_file ".solhint.json"

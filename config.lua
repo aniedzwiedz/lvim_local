@@ -2,7 +2,7 @@
  THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
  `lvim` is the global options object
 ]]
--- reload "user.lualine"
+reload "user.lualine"
 reload "user.plugins"
 reload "user.colorizer"
 reload "user.whichkey"

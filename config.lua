@@ -18,6 +18,10 @@ require("user.null_ls").config()
 -- reload("user.neogit")
 
 -- vim options
+vim.opt.listchars = { eol = "↵", space = "⋅" }
+vim.opt.list = true
+vim.lsp.buf.format { timeout_ms = 2000 }
+
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.relativenumber = true
@@ -27,6 +31,7 @@ vim.opt.linebreak = true
 vim.opt.inccommand = "split"
 
 -- general
+vim.diagnostic.config { virtual_text = true }
 lvim.transparent_window = true
 -- lvim.line_wrap_cursor_movement = false
 -- lvim.builtin.alpha.active = false

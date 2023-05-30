@@ -18,7 +18,14 @@ require("user.null_ls").config()
 -- reload("user.neogit")
 
 -- vim options
-vim.opt.listchars = { eol = "↵", space = "⋅" }
+vim.opt.listchars = {
+  eol = "⤶",
+  space = "⋅",
+  trail = "✚",
+  extends = "◀",
+  precedes = "▶",
+}
+-- vim.opt.listchars = { eol = "↵", space = "⋅" }
 vim.opt.list = true
 vim.lsp.buf.format { timeout_ms = 2000 }
 

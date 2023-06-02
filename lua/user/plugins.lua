@@ -13,6 +13,7 @@ lvim.plugins = {
 
   { "windwp/nvim-spectre" },
   { "ruifm/gitlinker.nvim" },
+  { "lvimuser/lsp-inlayhints.nvim" },
   -- { "TimUntersberger/neogit" },
   {
     "phaazon/hop.nvim",
@@ -96,9 +97,9 @@ lvim.plugins = {
     opts = {},
     event = "User AstroFile",
     cmd = { "TodoQuickFix" },
-    keys = {
-      { "<leader>T", "<cmd>TodoTelescope<cr>", desc = "Open TODOs in Telescope" },
-    },
+    -- keys = {
+    --   { "<leader>fT", "<cmd>TodoTelescope<cr>", desc = "Open TODOs in Telescope" },
+    -- },
   },
   {
     "pearofducks/ansible-vim",

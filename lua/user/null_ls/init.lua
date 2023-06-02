@@ -54,6 +54,8 @@ M.config = function()
     nls.builtins.formatting.scalafmt,
     nls.builtins.formatting.sqlformat,
     nls.builtins.formatting.terraform_fmt,
+    nls.builtins.formatting.rubocop,
+    -- nls.builtins.formatting.xmlformat,
     -- Support for nix files
     nls.builtins.formatting.alejandra,
     nls.builtins.formatting.shfmt.with { extra_args = { "-i", "2", "-ci" } },
@@ -87,6 +89,7 @@ M.config = function()
       end,
       extra_args = { "--metrics", "off", "--exclude", "vendor", "--config", semgrep_rule_folder },
     },
+    -- nls.builtins.diagnostics.rubocop,
     nls.builtins.diagnostics.shellcheck,
     nls.builtins.diagnostics.luacheck,
     nls.builtins.diagnostics.vint,

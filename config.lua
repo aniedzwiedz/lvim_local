@@ -1,7 +1,3 @@
---[[
- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
- `lvim` is the global options object
-]]
 reload "user.lualine"
 reload "user.plugins"
 reload "user.colorizer"
@@ -24,3 +20,4 @@ reload "user.options"
 
 require("user.null_ls").config()
 -- reload("user.neogit")
+require("lsp-toggle").setup()

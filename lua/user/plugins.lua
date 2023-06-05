@@ -14,6 +14,7 @@ lvim.plugins = {
   { "windwp/nvim-spectre" },
   { "ruifm/gitlinker.nvim" },
   { "lvimuser/lsp-inlayhints.nvim" },
+  { "adoyle-h/lsp-toggle.nvim" },
   -- { "TimUntersberger/neogit" },
   {
     "phaazon/hop.nvim",

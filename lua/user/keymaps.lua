@@ -21,7 +21,10 @@ keymap("n", "<C-i>", "<C-i>", opts)
 -- keymap("n", "<Up>", "<cmd>BookmarkPrev<cr>", opts)
 -- keymap("n", "<Right>", "<cmd>FilemarkNext<cr>", opts)
 -- keymap("n", "<Left>", "<cmd>FilemarkPrev<cr>", opts)
-
+vim.api.nvim_set_keymap('n', '<leader>gY', '<cmd>lua require"gitlinker".get_repo_url()<cr>', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>gB',
+  '<cmd>lua require"gitlinker".get_repo_url({action_callback = require"gitlinker.actions".open_in_browser})<cr>',
+  { silent = true })
 function _G.set_terminal_keymaps()
   vim.api.nvim_buf_set_keymap(0, "t", "<m-h>", [[<C-\><C-n><C-W>h]], opts)
   vim.api.nvim_buf_set_keymap(0, "t", "<m-j>", [[<C-\><C-n><C-W>j]], opts)

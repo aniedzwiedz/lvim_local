@@ -3,7 +3,10 @@ lvim.plugins = {
 
   { "rodjek/vim-puppet" },
   { "ChristianChiarulli/onedark.nvim" },
-  { "NvChad/nvim-colorizer.lua" },
+  {
+    "NvChad/nvim-colorizer.lua",
+    -- cmd = { "ColorizerToggle", "ColorizerAttachToBuffer", "ColorizerDetachFromBuffer", "ColorizerReloadAllBuffers" },
+  },
   { "simrat39/rust-tools.nvim" },
   { "MunifTanjim/nui.nvim" },
   { "is0n/jaq-nvim" },
@@ -15,6 +18,19 @@ lvim.plugins = {
   { "ruifm/gitlinker.nvim" },
   { "lvimuser/lsp-inlayhints.nvim" },
   { "adoyle-h/lsp-toggle.nvim" },
+  { "folke/trouble.nvim" },
+
+  { "roobert/tailwindcss-colorizer-cmp.nvim" },
+  { "RRethy/vim-illuminate" },
+  -- "nvim-treesitter/playground",
+  "nvim-treesitter/nvim-treesitter-textobjects",
+  "opalmay/vim-smoothie",
+  {
+    "hrsh7th/cmp-emoji",
+    event = "BufRead",
+  },
+  { "christianchiarulli/telescope-tabs", branch = "chris" },
+  { "christianchiarulli/bookmark.nvim" },
   -- { "TimUntersberger/neogit" },
   {
     "phaazon/hop.nvim",

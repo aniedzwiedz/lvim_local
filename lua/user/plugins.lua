@@ -50,7 +50,7 @@ lvim.plugins = {
     },
     keys = {
       { "<leader>gD", "<cmd>DiffviewOpen origin<cr>", desc = "Open DiffviewOpen" },
-      ["<F4>"] = { ":DiffviewClose<cr>", desc = "Close Diff View" }, -- closing Diffview
+      -- ["<F4>"] = { ":DiffviewClose<cr>", desc = "Close Diff View" }, -- closing Diffview
     },
   },
   {

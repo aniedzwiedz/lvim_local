@@ -128,6 +128,7 @@ lvim.builtin.which_key.mappings["o"] = {
   name = "Options",
   c = { "<cmd>lua lvim.builtin.cmp.active = false<cr>", "Completion off" },
   C = { "<cmd>lua lvim.builtin.cmp.active = true<cr>", "Completion on" },
+  d = { "<cmd>lua vim.diagnostic.config({ virtual_text = false })<cr>", "diagnostic virtual text off" },
   -- w = { '<cmd>lua require("user.functions").toggle_option("wrap")<cr>', "Wrap" },
   -- r = { '<cmd>lua require("user.functions").toggle_option("relativenumber")<cr>', "Relative" },
   -- l = { '<cmd>lua require("user.functions").toggle_option("cursorline")<cr>', "Cursorline" },

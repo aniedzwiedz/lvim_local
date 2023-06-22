@@ -76,7 +76,7 @@ M.config = function()
         return utils.root_has_file { "ruff.toml", ".ruff.toml" }
       end,
     },
-    nls.builtins.diagnostics.hadolint,
+    -- nls.builtins.diagnostics.hadolint,
     nls.builtins.diagnostics.eslint_d.with {
       condition = function(utils)
         return utils.root_has_file { ".eslintrc", ".eslintrc.js" }

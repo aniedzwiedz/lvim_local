@@ -10,7 +10,7 @@ lvim.plugins = {
   { "simrat39/rust-tools.nvim" },
   { "MunifTanjim/nui.nvim" },
   { "is0n/jaq-nvim" },
-  { "j-hui/fidget.nvim" },
+  -- { "j-hui/fidget.nvim", version = "legacy" },
   { "kylechui/nvim-surround" },
   { "mfussenegger/nvim-jdtls" },
 

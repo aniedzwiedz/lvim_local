@@ -55,6 +55,7 @@ M.config = function()
     nls.builtins.formatting.sqlformat,
     nls.builtins.formatting.terraform_fmt,
     nls.builtins.formatting.rubocop,
+    nls.builtins.formatting.beautysh,
     -- nls.builtins.formatting.xmlformat,
     -- Support for nix files
     nls.builtins.formatting.alejandra,
@@ -91,6 +92,7 @@ M.config = function()
     },
     -- nls.builtins.diagnostics.rubocop,
     nls.builtins.diagnostics.shellcheck,
+    nls.builtins.diagnostics.zsh,
     nls.builtins.diagnostics.luacheck,
     nls.builtins.diagnostics.vint,
     nls.builtins.diagnostics.chktex,
